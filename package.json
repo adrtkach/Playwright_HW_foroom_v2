@@ -1,0 +1,15 @@
+{
+  "name": "playwright_hw_2",
+  "version": "1.0.0",
+  "private": true,
+  "description": "homework with page objects",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adrtkach/Playwright_HW_2.git"
+  },
+  "author": "Adriana Tkach <adriana.tkachh@gmail.com>",
+  "license": "MIT"
+}
