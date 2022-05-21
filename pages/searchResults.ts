@@ -1,19 +1,25 @@
 import { expect, Locator, Page,} from '@playwright/test';
+import {Product} from '../testData';
+const product = new Product();
+
 
 export class SearchResults {
   readonly page: Page;
   readonly title: Locator;
-  readonly firstMatchedProduct: Locator;
+  readonly matchedProduct: Locator;
+  
+  
 
   constructor(page: Page) {
       this.page = page;
       this.title = page.locator('h1');
-      this.firstMatchedProduct = page.locator('.product-block .name');
-  }
+      this.matchedProduct = page.locator(`.product-block .name :text(${product.name})`);
+    }
 
-  async clickFirstMatchedProduct() {
-    await this.firstMatchedProduct.first().click();
+  async clickMatchedProduct() {
+    await this.matchedProduct.click();
   }
   
 }
+
 

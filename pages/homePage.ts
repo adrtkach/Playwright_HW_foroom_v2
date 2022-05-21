@@ -1,6 +1,6 @@
-import { expect, Locator, Page } from '@playwright/test';
+import { Locator, Page } from '@playwright/test';
 
-export class Base {
+export class HomePage {
   readonly page: Page;
   readonly searchField: Locator;
   readonly cartIcon: Locator;
@@ -12,6 +12,10 @@ export class Base {
     this.cartIcon = page.locator('.cart-wrapper .cart.svg');
   }
 
+  async goToMainUrl() {
+    await this.page.goto('https://foroom.com.ua/');
+  }
+
   async doSearch(productName: string) {
     await this.searchField.fill(productName);
     await this.searchField.press('Enter');
@@ -20,4 +24,5 @@ export class Base {
   async clickCart() {
     await this.cartIcon.click();
   }
+
 }

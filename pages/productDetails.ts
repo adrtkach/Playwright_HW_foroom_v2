@@ -12,5 +12,9 @@ export class ProductDetails {
       this.price = page.locator('[data-itemprop="price"]').first();
       this.buyButton = page.locator('[data-gp="buy_btn"]').first();
   }
+
+  async clickBuy() {
+    await this.buyButton.click();
+  }
       
 }

@@ -1,4 +1,7 @@
 import { expect, Locator, Page } from '@playwright/test';
+import { Buyer } from '../../testData';
+
+const buyer = new Buyer;
 
 export class Checkout {
     readonly page: Page;
@@ -25,41 +28,16 @@ export class Checkout {
         this.finalPrice = page.locator('#order-form .product-result-block span[data-itemprop="price"]');
     }
 
-    async fillName(buyerName) {
-        await this.name.fill(buyerName);
-    }
-    
-    async fillLastName(buyerLastName) {
-        await this.lastName.fill(buyerLastName);
-    }
-
-    async fillEmail(buyerEmail) {
-        await this.email.fill(buyerEmail);
-    }
-
-    async fillPhone(buyerPhone) {
-        await this.phone.fill(buyerPhone);
-    }
-
-    async selectDeliveryType() {
+    async enterBuyersData() {
+        await this.name.fill(buyer.name);
+        await this.lastName.fill(buyer.lastName);
+        await this.email.fill(buyer.email);
+        await this.phone.fill(buyer.phone);
         await this.page.selectOption('#OrderForm_delivery', {value: '2'})
-    }
-
-    async fillStreet(buyerStreet) {
-        await this.street.fill(buyerStreet);
-    }
-
-    async fillHouse(buyerHouse) {
-        await this.house.fill(buyerHouse);
-    }
-
-    async fillFlat(buyerFlat) {
-        await this.flat.fill(buyerFlat)
-    }
-
-    async selectPaymentType() {
+        await this.street.fill(buyer.street);
+        await this.house.fill(buyer.house);
+        await this.flat.fill(buyer.flat)
         await this.page.selectOption('#OrderForm_payform', {value: '1'});
-
     }
 
 }
