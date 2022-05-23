@@ -13,7 +13,7 @@ export class SearchResults {
   constructor(page: Page) {
       this.page = page;
       this.title = page.locator('h1');
-      this.matchedProduct = page.locator(`.product-block .name :text(${product.name})`);
+      this.matchedProduct = page.locator(`.result_search .product-link div:has-text("${product.name}")`);
     }
 
   async clickMatchedProduct() {

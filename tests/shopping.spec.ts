@@ -1,7 +1,6 @@
 import { test, expect, Page } from '@playwright/test';
 
-import {Buyer, Product} from '../testData';
-import { CartItems } from '../pages/cart/cartItems';
+import { Product } from '../testData';
 import { SearchResults } from '../pages/searchResults';
 import { ProductDetails } from '../pages/productDetails';
 import { CartModal } from '../pages/cart/cartModal';
@@ -10,21 +9,19 @@ import { HomePage } from '../pages/homePage';
 import { SearchResultsAssert } from '../assertions/searchResultsAssert';
 import { CartAssert, CartPriceAssert } from '../assertions/cartAssert';
 
-test('find product', async ({ page }) => {
+test('test: buying broduct', async ({ page }) => {
 
-    const buyer = new Buyer;
     const product = new Product;
     const searchResults = new SearchResults(page);
     const productDetails = new ProductDetails(page);
     const cartModal = new CartModal(page);
-    const cartItems = new CartItems(page);
     const checkout = new Checkout(page);
     const homePage = new HomePage(page);
     const searchResultsAssert = new SearchResultsAssert(page);
     const cartAssert = new CartAssert(page);
     const cartPriceAssert = new CartPriceAssert(page);
- 
 
+    // Go to main URL
 
     await homePage.goToMainUrl();
 
@@ -32,9 +29,8 @@ test('find product', async ({ page }) => {
 
     await homePage.doSearch(product.name);
     await searchResultsAssert.verifyTitle();
-    // await searchResultsAssert.verifyMatchedProduct();
-    // await searchResults.clickMatchedProduct();
-    await page.locator('.product-block .name').first().click(); // temporary
+    await searchResultsAssert.verifyMatchedProduct();
+    await searchResults.clickMatchedProduct();
 
     // Adding to cart
     
