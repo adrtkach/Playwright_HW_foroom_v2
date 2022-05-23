@@ -8,6 +8,7 @@ import { Checkout } from '../pages/cart/checkout';
 import { HomePage } from '../pages/homePage';
 import { SearchResultsAssert } from '../assertions/searchResultsAssert';
 import { CartAssert, CartPriceAssert } from '../assertions/cartAssert';
+import { ProductDetailsAssert } from '../assertions/productDetailsAssert';
 
 test('test: buying broduct', async ({ page }) => {
 
@@ -20,6 +21,7 @@ test('test: buying broduct', async ({ page }) => {
     const searchResultsAssert = new SearchResultsAssert(page);
     const cartAssert = new CartAssert(page);
     const cartPriceAssert = new CartPriceAssert(page);
+    const productDetailsAssert = new ProductDetailsAssert(page);
 
     // Go to main URL
 
@@ -34,14 +36,15 @@ test('test: buying broduct', async ({ page }) => {
 
     // Adding to cart
     
-    await expect(productDetails.title).toHaveText(product.name);
-    product.price = (await productDetails.price.innerHTML()).toString()
+    await productDetailsAssert.productDetailsName();
+    product.price = await productDetails.getProductPrice();
+    await productDetails.getProductPrice();
     await productDetails.clickBuy();
     await cartModal.clickProceed();
 
     // Verify product name & total price in cart
 
-    await cartAssert.cartProductName(product.name);
+    await cartAssert.cartProductName();
     await cartAssert.cartProductPrice(product.price);
 
     //  Check out

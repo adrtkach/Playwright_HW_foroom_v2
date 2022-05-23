@@ -1,13 +1,13 @@
 import { faker } from '@faker-js/faker';
 
 export class Buyer {
-    readonly phone;
-    readonly name;
-    readonly lastName;
-    readonly email;
-    readonly street;
-    readonly house;
-    readonly flat;
+    readonly phone: string;
+    readonly name: string;
+    readonly lastName: string;
+    readonly email: string;
+    readonly street: string;
+    readonly house: string;
+    readonly flat: string;
 
     constructor() {
         this.phone = faker.phone.phoneNumber('980######')

@@ -1,4 +1,7 @@
 import { Locator, Page, } from '@playwright/test';
+import { Product } from '../testData';
+
+const product = new Product;
 
 export class ProductDetails {
     readonly page: Page;
@@ -15,6 +18,11 @@ export class ProductDetails {
 
   async clickBuy() {
     await this.buyButton.click();
+  }
+
+  async getProductPrice() {
+     product.price = await this.price.innerHTML();
+     return (product.price).toString();
   }
       
 }
